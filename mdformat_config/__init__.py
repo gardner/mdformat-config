@@ -12,6 +12,12 @@ yaml.indent(mapping=2, sequence=4, offset=2)
 
 
 def format_json(unformatted: str, _info_str: str) -> str:
+    try:
+        parsed = json.loads(unformatted)
+        return json.dumps(parsed, indent=2) + "\n"
+    except:
+        unformatted = "{" + unformatted.strip() + "}"
+
     parsed = json.loads(unformatted)
     return json.dumps(parsed, indent=2) + "\n"
 
